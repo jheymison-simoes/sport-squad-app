@@ -1,7 +1,53 @@
-<main class="my-squads-main">
-  <h1 class="my-2">Meus Squads</h1>
+<main class="container my-squads-main">
+  <h1 class="mt-4">Meus Squads</h1>
   <hr>
 
+  <section class="my-squads-items">
+    <button
+      mat-raised-button
+      class="btn-add-new-squad"
+      color="success"
+    >
+      <div class="flex-between">
+        ADICIONAR NOVO
+        <i class="fas fa-plus"></i>
+      </div>
+    </button>
 
+
+
+    <mat-card class="mt-2" *ngFor="let squad of allSquadsUser">
+      <mat-card-content>
+        <div class="my-squads-item flex-between">
+          <span>{{squad.name}}</span>
+
+          <div class="d-flex">
+            <button
+              mat-fab
+              color="success"
+              class="mr-2"
+              #tooltip="matTooltip"
+              matTooltip="Editar Squad"
+              matTooltipPosition="below"
+              aria-label="Editar"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+
+            <button
+              mat-fab
+              color="danger"
+              #tooltip="matTooltip"
+              matTooltip="Deletar Squad"
+              matTooltipPosition="below"
+              aria-label="Deletar"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </section>
 </main>
-<button mat-raised-button color="primary">TESTE</button>

@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'SportSquadApp';
+export class AppComponent implements OnInit {
+  @HostBinding('class') className= 'darkMode';
+
+  ngOnInit(): void {
+    this.className = 'darkMode';
+  }
 }
