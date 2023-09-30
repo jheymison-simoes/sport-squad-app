@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from "./components/nav/nav.component";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import {MatButtonModule} from "@angular/material/button";
+import { MatButtonModule } from "@angular/material/button";
+import { StarRatingModule } from "angular-star-rating";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {MatButtonModule} from "@angular/material/button";
   imports: [
     CommonModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    StarRatingModule.forRoot()
   ]
 })
 export class SharedModule { }

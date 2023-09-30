@@ -1,0 +1,39 @@
+.inputs-full-width {
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: #49d268;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #218838;
+}
+
+.btn-add-new-squad-config {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+}
+
+.squad-config-card {
+  display: flex;
+  align-items: center;
+  border: .063rem solid #ccc;
+  border-radius: .5rem;
+  padding: .25rem;
+  margin-bottom: .5rem;
+}
+
+.squad-config-card-body {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+}
+
+.squad-config-card-body > span:first-child {
+  font-size: 1.3rem;
+}

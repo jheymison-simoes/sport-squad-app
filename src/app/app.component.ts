@@ -1,4 +1,5 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,9 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 export class AppComponent implements OnInit {
   @HostBinding('class') className= 'darkMode';
 
-  ngOnInit(): void {
+  constructor() {}
+
+  ngOnInit() {
     this.className = 'darkMode';
   }
 }

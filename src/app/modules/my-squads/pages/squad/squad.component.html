@@ -1,0 +1,93 @@
+<main class="squad-main container my-3 pb-4">
+  <a
+    mat-raised-button
+    class="btn-add-new-player"
+    color="success"
+    [routerLink]="'/players/create/'+squadId"
+  >
+    <div class="flex-between">
+      ADICIONAR JOGADOR
+      <i class="fas fa-plus"></i>
+    </div>
+  </a>
+
+  <button
+    mat-raised-button
+    class="btn-add-new-player"
+    color="info"
+    (click)="shareSquad()"
+  >
+    <div class="flex-between">
+      COMPARTILHAR SQUAD
+      <i class="fas fa-share-alt"></i>
+    </div>
+  </button>
+
+  <div class="alert alert-info text-center w-100" *ngIf="playersGrouped.length === 0">
+    Não foi definido nenhuma configuração de jogares para este Squad!
+  </div>
+
+  <section
+    class="squa-body"
+    *ngFor="let playerType of playersGrouped; trackBy: trackByPlayerGroupedFn"
+  >
+    <h1 class="mt-4">
+      <i class="fas fa-{{playerType.playerTypeIcon}}"></i>
+      {{ playerType.playerTypeName }}
+      <small class="small text-muted">
+        {{ playerType.quantityPlayers }} / {{ playerType.quantityMaxPlayers }}
+      </small>
+    </h1>
+    <hr>
+    <div class="alert alert-info text-center w-100" *ngIf="playerType.players.length === 0">
+      Nenhum jogador {{ playerType.playerTypeName }} adicionado!
+    </div>
+    <mat-card
+      class="card-player mb-2"
+      [ngClass]="{ 'border-substitute': player.substitute }"
+      *ngFor="let player of playerType.players; trackBy: trackByPlayerFn;"
+    >
+      <mat-card-content>
+        <div class="card-player-item">
+          <div>
+            <span>{{ player.index }}.</span>
+            <div>
+              <span> {{ player.name }}</span>
+              <star-rating
+                [starType]="'svg'"
+                [rating]="player.skillLevel"
+                [readOnly]="true"
+                staticColor="ok"
+              >
+              </star-rating>
+            </div>
+          </div>
+          <div class="d-flex">
+            <a
+              mat-fab
+              color="info"
+              class="mr-2"
+              matTooltip="Editar Squad"
+              matTooltipPosition="below"
+              aria-label="Editar"
+              [routerLink]="'/players/update/'+player.playerId"
+            >
+              <i class="fas fa-edit"></i>
+            </a>
+
+            <button
+              mat-fab
+              color="danger"
+              matTooltip="Deletar Squad"
+              matTooltipPosition="below"
+              aria-label="Deletar"
+              (click)="openConfirmDelete(player.playerId, player.name)"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</main>

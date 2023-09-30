@@ -4,6 +4,9 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+import './app/core/extensions/form-group.extensions';
+import './app/core/extensions/router-active.extensions';
+
 if (environment.production) {
   enableProdMode();
 }

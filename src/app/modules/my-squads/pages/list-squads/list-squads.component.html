@@ -1,0 +1,69 @@
+<main class="container my-squads-main pb-4">
+  <h1 class="mt-4">Meus Squads</h1>
+  <hr>
+
+  <section class="my-squads-items">
+    <a
+      mat-raised-button
+      class="btn-add-new-squad"
+      color="success"
+      [routerLink]="['create']"
+    >
+      <div class="flex-between">
+        ADICIONAR NOVO
+        <i class="fas fa-plus"></i>
+      </div>
+    </a>
+
+
+    <section class="mt-2 w-100">
+      <div class="alert alert-info text-center w-100" *ngIf="allSquadsUser.length === 0">
+        Você não criou nenhum <strong>Squad</strong> ainda!
+      </div>
+      <mat-card class="mb-2" *ngFor="let squad of allSquadsUser">
+        <mat-card-content>
+          <div class="my-squads-item flex-between">
+            <span>{{ squad.name }}</span>
+
+            <div class="d-flex">
+              <a
+                mat-fab
+                color="success"
+                class="mr-2"
+                matTooltip="Ver Jogadores"
+                matTooltipPosition="below"
+                aria-label="Ver Jogadores"
+                [routerLink]="'squad/' + squad.id"
+              >
+                <i class="fas fa-eye"></i>
+              </a>
+
+              <a
+                mat-fab
+                color="info"
+                class="mr-2"
+                matTooltip="Editar Squad"
+                matTooltipPosition="below"
+                aria-label="Editar"
+              >
+                <i class="fas fa-edit"></i>
+              </a>
+
+              <button
+                mat-fab
+                color="danger"
+                matTooltip="Deletar Squad"
+                matTooltipPosition="below"
+                aria-label="Deletar"
+                (click)="confirmDeleteSquad(squad.id, squad.name)"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </section>
+
+  </section>
+</main>

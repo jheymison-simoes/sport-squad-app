@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-list-squads',
+  selector: 'app-players',
   template: '<router-outlet></router-outlet>'
 })
-export class MySquadsComponent { }
+export class PlayersComponent { }

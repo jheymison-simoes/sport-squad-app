@@ -1,0 +1,63 @@
+<main class="container my-4 pb-4">
+  <form [formGroup]="updatePlayerForm" novalidate (submit)="onSubmitForm($event)">
+    <h1 class="mt-4">Atualizar Jogador</h1>
+    <hr>
+
+    <mat-form-field appearance="outline" class="inputs-full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput required formControlName="name">
+      <mat-error
+        *ngIf="updatePlayerForm.checkTouchedOrDirty('name')"
+      >
+        <span *ngIf="updatePlayerForm.containError('name', 'required')">
+          {{ updatePlayerForm.getMessageError(validationMessages, 'name', 'required') }}
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="inputs-full-width">
+      <mat-label>Tipo de jogador</mat-label>
+      <mat-select formControlName="playerTypeId" required>
+        <mat-option>Selecione uma opção abaixo</mat-option>
+        <mat-option
+          *ngFor="let playerType of playerTypes"
+          [value]="playerType.id"
+        >
+          {{ playerType.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="updatePlayerForm.checkTouchedOrDirty('playerTypeId')"
+      >
+        <span *ngIf="updatePlayerForm.containError('playerTypeId', 'required')">
+          {{updatePlayerForm.getMessageError(validationMessages, 'playerTypeId', 'required')}}
+        </span>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="flex-between text-dark inputs-full-width">
+      <span class="mr-2">Nivel de Habilidade:</span>
+      <star-rating-control
+        formControlName="skillLevel"
+        starType="svg"
+        size="large"
+        staticColor="ok"
+      >
+      </star-rating-control>
+    </div>
+
+    <div class="my-3 w-100">
+      <button
+        mat-raised-button
+        class="btn-save-new-player"
+        color="success"
+      >
+        <div class="flex-between">
+          CONCLUIR
+          <i class="fas fa-save"></i>
+        </div>
+      </button>
+    </div>
+
+  </form>
+</main>
