@@ -48,4 +48,10 @@ export class PlayerService extends BaseService {
     return this.httpClient.put<BaseResponse<PlayerDto>>(uri, playerUpdate)
       .pipe(map(this.validationResult));
   }
+
+  cleanAllPlayersInSquad(squadId: string): Observable<boolean> {
+    const uri = `${this.baseUri}/cleanplayersinsquad/${squadId}`;
+    return this.httpClient.post<BaseResponse<boolean>>(uri, null)
+      .pipe(map(this.validationResult));
+  }
 }
