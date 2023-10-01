@@ -25,8 +25,7 @@ export class ListSquadsComponent implements OnInit {
       next: (response: SquadDto[]) => {
         console.log(response[0].id)
         this.allSquadsUser = response;
-      },
-      error: ({message}: Error) => this.notify.error(message)
+      }
     });
   }
 
@@ -50,8 +49,7 @@ export class ListSquadsComponent implements OnInit {
       next: response => {
         this.allSquadsUser = this.allSquadsUser.filter(s => s.id != response.id);
         this.notify.success('Squad deletado com sucesso!');
-      },
-      error: ({message}: Error) => this.notify.error(message)
+      }
     })
   }
 }

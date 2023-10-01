@@ -46,8 +46,7 @@ export class AssembleTeamsComponent implements OnInit {
       next: response => {
         this.notifyService.success('Times montados com successo!');
         this.assembledTeams = response;
-      },
-      error: ({message}: Error) => this.notifyService.error(message)
+      }
     });
   }
 
@@ -61,8 +60,7 @@ export class AssembleTeamsComponent implements OnInit {
         const textShared = encodeURIComponent(response);
         const url = `https://api.whatsapp.com/send?text=${textShared}`;
         this.rendererService.setAttribute(window.open(url, '_blank'), 'noopener', 'true');
-      },
-      error: ({message}: Error) => this.notifyService.error(message)
+      }
     });
   }
 

@@ -63,8 +63,7 @@ export class CreateSquadComponent implements OnInit {
       next: (response: SquadDto) => {
         this.notifyService.success('Squad criado com sucesso!');
         this.redirectToSquad(response.id);
-      },
-      error: ({message}: Error) => this.notifyService.error(message)
+      }
     });
   }
 

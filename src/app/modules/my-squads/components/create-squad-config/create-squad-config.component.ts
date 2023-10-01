@@ -90,8 +90,7 @@ export class CreateSquadConfigComponent implements OnInit {
 
   private getAllPlayersTypes(): void {
     this.playerTypeService.getAll().subscribe({
-      next: (response: PlayerTypeDto[]) => this.playerTypes = response,
-      error: (error) => this.notify.error(error)
+      next: (response: PlayerTypeDto[]) => this.playerTypes = response
     });
   }
 
