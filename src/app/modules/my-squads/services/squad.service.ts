@@ -48,4 +48,10 @@ export class SquadService extends BaseService {
     return this.httpClient.post<BaseResponse<Array<AssembledTeamsDto>>>(uri, assembleTeamsDto)
       .pipe(map(this.validationResult));
   }
+
+  getTextSharingAssembledTeams(squadId: string, assembledTeams: Array<AssembledTeamsDto>): Observable<string> {
+    const uri = `${this.baseUri}/sharedtextassembledteams/${squadId}`;
+    return this.httpClient.post<BaseResponse<string>>(uri, assembledTeams)
+      .pipe(map(this.validationResult));
+  }
 }
