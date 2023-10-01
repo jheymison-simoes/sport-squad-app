@@ -51,6 +51,11 @@ export class SquadComponent implements OnInit {
   }
 
   shareSquad(): void {
+    if (!this.existPlayers) {
+      this.notify.info('Não há jogares neste squad!');
+      return;
+    }
+
     this.squadService.getSquadTextShared(this.squadId).subscribe({
       next: response => {
         const textShared = encodeURIComponent(response);
@@ -61,16 +66,33 @@ export class SquadComponent implements OnInit {
       },
       error: ({message}: Error) => this.notify.error(message)
     });
-
-
   }
 
-  private sharedTextSquad(textShared: string): void {
-    if (!navigator.share) return;
-    navigator.share({
-      text: textShared
-    }).then(() => console.log('Compartilhado'))
-      .catch(() => console.log('Erro ao compartilhar'));
+  confirmCleanPlayersSquad(): void {
+    if (!this.existPlayers) {
+      this.notify.info('Não há jogares para serem removidos!');
+      return;
+    }
+
+    Swal.fire({
+      title: 'Atenção',
+      text: `Tem certeza que deseja remover todos os jogadores deste squad?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#28a745',
+      cancelButtonColor: '#dc3545',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não'
+    }).then(result => this.cleanPlayersSquad(result.isConfirmed));
+  }
+
+  assembleTeams(): void {
+    if (!this.existPlayers) {
+      this.notify.info('Não há jogares para montar times!');
+      return;
+    }
+
+    this.router.navigate(['/my-squads/squad/assemble-teams/' + this.squadId])
   }
 
   private deletePlayer(playerId: string, confirmed: boolean){
@@ -101,7 +123,22 @@ export class SquadComponent implements OnInit {
         this.playersGrouped = response
       },
       error: ({message}: Error) => this.notify.error(message)
-    })
+    });
   }
 
+  private cleanPlayersSquad(isConfirmed: boolean): void {
+    if (!isConfirmed) return;
+
+    this.playerService.cleanAllPlayersInSquad(this.squadId).subscribe({
+      next: response => {
+        if (!response) return;
+        this.getPlayersBySquadById();
+      },
+      error: ({message}: Error) => this.notify.error(message)
+    });
+  }
+
+  get existPlayers():boolean {
+    return this.playersGrouped.some(p => p.players.length > 0);
+  }
 }
