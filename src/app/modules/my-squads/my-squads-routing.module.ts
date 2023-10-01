@@ -4,6 +4,7 @@ import { MySquadsComponent } from "./my-squads.component";
 import { CreateSquadComponent } from "./pages/create-squad/create-squad.component";
 import { SquadComponent } from "./pages/squad/squad.component";
 import { ListSquadsComponent } from "./pages/list-squads/list-squads.component";
+import {AssembleTeamsComponent} from "./pages/assemble-teams/assemble-teams.component";
 
 const routes: Routes = [
   {
@@ -21,8 +22,12 @@ const routes: Routes = [
       {
         path: 'squad/:squadId',
         component: SquadComponent
-      }
+      },
     ]
+  },
+  {
+    path: 'squad/assemble-teams/:squadId',
+    component: AssembleTeamsComponent
   }
 ];
 

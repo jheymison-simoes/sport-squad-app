@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, Observable, Subject} from "rxjs";
+import {map, Observable} from "rxjs";
 import {BaseResponse} from "../../../shared/models/base-response.model";
 import {SquadDto} from "../../../shared/models/squad/squad.dto";
-import {Guid} from "guid-typescript";
 import {BaseService} from "../../../shared/base/base.service";
 import {CreateSquadDto} from "../models/create-squad.dto";
+import {AssembleTeamsDto} from "../models/assemble-teams.dto";
+import {AssembledTeamsDto} from "../models/assembled-teams.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,12 @@ export class SquadService extends BaseService {
   getSquadTextShared(squadId: string): Observable<string> {
     const uri = `${this.baseUri}/gettextsquadshare/${squadId}`;
     return this.httpClient.get<BaseResponse<string>>(uri)
+      .pipe(map(this.validationResult));
+  }
+
+  assembleTeams(assembleTeamsDto: AssembleTeamsDto): Observable<Array<AssembledTeamsDto>> {
+    const uri = `${this.baseUri}/assembleteams`;
+    return this.httpClient.post<BaseResponse<Array<AssembledTeamsDto>>>(uri, assembleTeamsDto)
       .pipe(map(this.validationResult));
   }
 }

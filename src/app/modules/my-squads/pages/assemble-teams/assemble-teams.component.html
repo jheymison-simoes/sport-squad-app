@@ -1,0 +1,103 @@
+<main class="container assemble-teams-main mt-2 pb-3">
+  <section *ngIf="assembledTeams.length === 0">
+    <h1>Montar Times</h1>
+    <hr>
+
+    <form [formGroup]="assembleTeamsForm" novalidate (submit)="onSubmitForm($event)">
+      <section>
+        <mat-form-field appearance="outline" class="inputs-full-width">
+          <mat-label>Quantidade de Times</mat-label>
+          <input matInput type="number" min="0" required formControlName="quantityTeams">
+          <mat-error
+            *ngIf="assembleTeamsForm.checkTouchedOrDirty('quantityTeams')"
+          >
+            <span *ngIf="assembleTeamsForm.containError('quantityTeams', 'required')">
+              {{ assembleTeamsForm.getMessageError(validationMessages, 'quantityTeams', 'required') }}
+            </span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-slide-toggle
+          class="mat-slide-toggle-success"
+          color="primary"
+          [labelPosition]="'before'"
+          formControlName="balanced"
+        >
+          Equilibrar por nível de habilidade?
+        </mat-slide-toggle>
+      </section>
+
+      <div class="my-3 w-100">
+        <button
+          mat-raised-button
+          class="btn-assemble-team"
+          color="success"
+        >
+          <div class="flex-between">
+            MONTAR TIME
+            <i class="fas fa-futbol"></i>
+          </div>
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <section *ngIf="assembledTeams.length > 0">
+    <h1>Times Montados</h1>
+    <hr>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <button
+          mat-raised-button
+          class="btn-assemble-team"
+          color="success"
+          (click)="assembleTeamsAgain()"
+        >
+          <div class="flex-between">
+            MONTAR NOVAMENTE
+            <i class="fas fa-futbol"></i>
+          </div>
+        </button>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <button
+            mat-raised-button
+            class="btn-shared-teams"
+            color="info"
+        >
+          <div class="flex-between">
+            COMPARTILHAR TIMES
+            <i class="fas fa-share-alt"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <section>
+      <div class="mb-2" *ngFor="let team of assembledTeams">
+        <mat-card>
+          <mat-card-content>
+            <mat-card-header>
+              <mat-card-title>{{ team.teamName }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-list>
+                <mat-list-item *ngFor="let player of team.players">
+                  {{ player.playerName }}
+                  <star-rating
+                      [starType]="'svg'"
+                      [rating]="player.skillLevel"
+                      [readOnly]="true"
+                      staticColor="ok"
+                  >
+                  </star-rating>
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </section>
+  </section>
+</main>
