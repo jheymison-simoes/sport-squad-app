@@ -48,8 +48,7 @@ export class UpdatePlayerComponent implements OnInit {
           playerTypeId: response.playerTypeId,
           skillLevel: response.skillLevel
         });
-      },
-      error: (error: Error) => this.notify.error(error.message)
+      }
     });
   }
 
@@ -71,15 +70,13 @@ export class UpdatePlayerComponent implements OnInit {
       next: response => {
         this.notify.success('Jogador atualizado com sucesso!');
         this.router.navigate(['/my-squads/squad/', response.squadId]);
-      },
-      error: (error: Error) => this.notify.error(error.message)
+      }
     });
   }
 
   private getAllPlayersTypes(): void {
     this.playerTypeService.getAll().subscribe({
-      next: (response: PlayerTypeDto[]) => this.playerTypes = response,
-      error: (error) => this.notify.error(error)
+      next: (response: PlayerTypeDto[]) => this.playerTypes = response
     });
   }
 

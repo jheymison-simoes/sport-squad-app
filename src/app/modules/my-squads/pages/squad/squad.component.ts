@@ -63,8 +63,7 @@ export class SquadComponent implements OnInit {
         this.rendererService.setAttribute(window.open(url, '_blank'), 'noopener', 'true');
         // if (!navigator.share) return;
         // this.sharedTextSquad(response);
-      },
-      error: ({message}: Error) => this.notify.error(message)
+      }
     });
   }
 
@@ -110,8 +109,7 @@ export class SquadComponent implements OnInit {
         });
 
         this.notify.success('Jogador removido com sucesso!')
-      },
-      error: ({message}: Error) => this.notify.error(message)
+      }
     });
   }
 
@@ -121,8 +119,7 @@ export class SquadComponent implements OnInit {
     this.playerService.getAllBySquadId(this.squadId).subscribe({
       next: (response: PlayerGroupedTypeDto[]) => {
         this.playersGrouped = response
-      },
-      error: ({message}: Error) => this.notify.error(message)
+      }
     });
   }
 
@@ -133,8 +130,7 @@ export class SquadComponent implements OnInit {
       next: response => {
         if (!response) return;
         this.getPlayersBySquadById();
-      },
-      error: ({message}: Error) => this.notify.error(message)
+      }
     });
   }
 

@@ -64,15 +64,13 @@ export class CreatePlayerComponent implements OnInit {
         this.playerCacheService.setPlayerInCache(response);
         this.notify.success('Jogador adicionado com sucesso!');
         this.router.navigate(['/my-squads/squad/', response.squadId]);
-      },
-      error: (error: Error) => this.notify.error(error.message)
+      }
     });
   }
 
   private getAllPlayersTypes(): void {
     this.playerTypeService.getAll().subscribe({
-      next: (response: PlayerTypeDto[]) => this.playerTypes = response,
-      error: (error) => this.notify.error(error)
+      next: (response: PlayerTypeDto[]) => this.playerTypes = response
     });
   }
 
