@@ -2,7 +2,7 @@
   <h1 class="mt-4">Configurações do Squad</h1>
   <hr>
 
-  mainten<form [formGroup]="createSquadConfigForm" novalidate (submit)="onSubmitForm($event)">
+  <form [formGroup]="createSquadConfigForm" novalidate (submit)="onSubmitForm($event)">
     <mat-form-field appearance="outline" class="inputs-full-width">
       <mat-label>Tipo de jogador</mat-label>
       <mat-select formControlName="playerTypeId" required>

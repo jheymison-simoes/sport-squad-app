@@ -17,6 +17,7 @@ import { CreateSquadConfigComponent } from './components/create-squad-config/cre
 import { SquadComponent } from './pages/squad/squad.component';
 import { ListSquadsComponent } from './pages/list-squads/list-squads.component';
 import {StarRatingModule} from "angular-star-rating";
+import { AssembleTeamsComponent } from './pages/assemble-teams/assemble-teams.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {StarRatingModule} from "angular-star-rating";
     CreateSquadConfigComponent,
     SquadComponent,
     ListSquadsComponent,
+    AssembleTeamsComponent,
   ],
   imports: [
     MatButtonModule,

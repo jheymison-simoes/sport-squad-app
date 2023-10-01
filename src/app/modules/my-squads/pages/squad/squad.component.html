@@ -1,27 +1,46 @@
 <main class="squad-main container my-3 pb-4">
-  <a
-    mat-raised-button
-    class="btn-add-new-player"
-    color="success"
-    [routerLink]="'/players/create/'+squadId"
-  >
-    <div class="flex-between">
-      ADICIONAR JOGADOR
-      <i class="fas fa-plus"></i>
-    </div>
-  </a>
 
-  <button
-    mat-raised-button
-    class="btn-add-new-player"
-    color="info"
-    (click)="shareSquad()"
-  >
-    <div class="flex-between">
-      COMPARTILHAR SQUAD
-      <i class="fas fa-share-alt"></i>
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <a
+        mat-raised-button
+        class="btn-add-new-player"
+        color="success"
+        [routerLink]="'/players/create/'+squadId"
+      >
+        <div class="flex-between">
+          ADICIONAR JOGADOR
+          <i class="fas fa-plus"></i>
+        </div>
+      </a>
     </div>
-  </button>
+    <div class="col-sm-12 col-md-4">
+      <button
+        mat-raised-button
+        class="btn-add-new-player"
+        color="info"
+        (click)="shareSquad()"
+      >
+        <div class="flex-between">
+          COMPARTILHAR SQUAD
+          <i class="fas fa-share-alt"></i>
+        </div>
+      </button>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <a
+        mat-raised-button
+        class="btn-add-new-player"
+        color="info"
+        [routerLink]="'/my-squads/squad/assemble-teams/'+squadId"
+      >
+        <div class="flex-between">
+          MONTAR TIMES
+          <i class="fas fa-futbol"></i>
+        </div>
+      </a>
+    </div>
+  </div>
 
   <div class="alert alert-info text-center w-100" *ngIf="playersGrouped.length === 0">
     Não foi definido nenhuma configuração de jogares para este Squad!
