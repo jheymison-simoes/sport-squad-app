@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {AssembleTeamsDto} from "../../models/assemble-teams.dto";
 import {ActivatedRoute} from "@angular/router";
@@ -16,17 +16,20 @@ export class AssembleTeamsComponent implements OnInit {
   assembleTeamsForm: FormGroup;
   validationMessages: any;
   assembledTeams: Array<AssembledTeamsDto> = [];
+  squadId: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private activeRouteService: ActivatedRoute,
     private squadService: SquadService,
-    private notifyService: ToastrService
+    private notifyService: ToastrService,
+    private rendererService: Renderer2
   ) { }
 
   ngOnInit(): void {
     this.initValidationMessages();
     this.initAssembleTeamsForm();
+    this.getSquadIdFromRoute();
   }
 
   onSubmitForm(event: SubmitEvent): void {
@@ -34,7 +37,7 @@ export class AssembleTeamsComponent implements OnInit {
     if (!this.assembleTeamsForm.valid) return;
 
     const assembleTeamsDto: AssembleTeamsDto = {
-      squadId: this.activeRouteService.getParam<string>('squadId'),
+      squadId: this.squadId,
       quantityTeams: this.assembleTeamsForm.get('quantityTeams')?.value ?? 0,
       balanced: this.assembleTeamsForm.get('balanced')?.value ?? 0,
     };
@@ -45,11 +48,22 @@ export class AssembleTeamsComponent implements OnInit {
         this.assembledTeams = response;
       },
       error: ({message}: Error) => this.notifyService.error(message)
-    })
+    });
   }
 
   assembleTeamsAgain(): void {
       this.assembledTeams = [];
+  }
+
+  sharingAssembledTeams(): void {
+    this.squadService.getTextSharingAssembledTeams(this.squadId, this.assembledTeams).subscribe({
+      next: response => {
+        const textShared = encodeURIComponent(response);
+        const url = `https://api.whatsapp.com/send?text=${textShared}`;
+        this.rendererService.setAttribute(window.open(url, '_blank'), 'noopener', 'true');
+      },
+      error: ({message}: Error) => this.notifyService.error(message)
+    });
   }
 
   private initAssembleTeamsForm(): void {
@@ -66,4 +80,6 @@ export class AssembleTeamsComponent implements OnInit {
       }
     }
   }
+
+  private getSquadIdFromRoute = () => this.squadId = this.activeRouteService.getParam<string>('squadId');
 }
