@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   HttpEvent,
   HttpInterceptor,
@@ -6,13 +6,12 @@ import {
   HttpRequest,
   HttpErrorResponse,
 } from '@angular/common/http';
-import {finalize, Observable} from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import {Observable, tap} from 'rxjs';
 import {NgxSpinnerService} from "ngx-spinner";
 import {BaseResponse} from "../../shared/models/base-response.model";
 import {ToastrService} from "ngx-toastr";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class HttpRequestInterceptor implements HttpInterceptor {
 
   constructor(
@@ -22,21 +21,29 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> | Observable<never> {
     this.loadingService.show();
+
     return next.handle(request).pipe(
-      catchError(this.errorHandler),
-      finalize(() => this.loadingService.hide())
+      tap({
+        next: () => null,
+        error: (err: HttpErrorResponse) => {
+          const messageError = this.errorHandler(err);
+          return Error(messageError);
+        },
+        finalize: () => this.loadingService.hide(),
+      })
     );
   }
 
-  errorHandler(error: HttpErrorResponse): Observable<never> {
+  errorHandler(error: HttpErrorResponse): string {
     const responseError = error['error'] as BaseResponse<null>;
+    const messageError = responseError.errorMessages.join(", ");
 
     switch (error.status) {
       case 401:
         this.notifyService.error('Parece que você não possui permissão para esta ação!');
         break;
       case 400:
-        this.notifyService.error(responseError.errorMessages.join(", "));
+        this.notifyService.error(messageError);
         break;
       case 0:
       case 404:
@@ -48,6 +55,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         break;
     }
 
-    throw new Error(responseError.errorMessages.join(", "));
+    return messageError;
   }
 }
