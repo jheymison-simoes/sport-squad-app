@@ -1,8 +1,53 @@
 .sport-squad-nav {
   background-color: #343a40;
   color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
   width: 5rem;
+}
+
+.sport-squad-nav-card {
+  max-width: 400px;
+  padding: .1rem;
+  background-color: #343a40;
+  color: #fff;
+  box-shadow: none;
+  border: 1px solid #474747;
+
+  ::ng-deep .mat-card-header .mat-card-title {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+
+  ::ng-deep .mat-card-header-text {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.sport-squad-nav-card-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.sport-squad-nav-user {
+  display: flex;
+  align-items: center;
+}
+
+.sport-squad-nav-user-sign-out {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 390px) {
+  .sport-squad-nav-logo > span {
+    display: none;
+  }
 }

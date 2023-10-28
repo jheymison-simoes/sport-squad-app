@@ -8,5 +8,5 @@
 >
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
-<app-nav></app-nav>
+<app-nav *ngIf="!isHomePage"></app-nav>
 <router-outlet></router-outlet>

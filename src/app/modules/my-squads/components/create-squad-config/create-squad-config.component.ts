@@ -5,7 +5,6 @@ import { PlayerTypeService } from "../../../../shared/services/player-type.servi
 
 import { PlayerTypeDto } from "../../../../shared/models/player-type/player-type.dto";
 import { CreateSquadConfigForm } from "../../models/create-squad-config-form.model";
-import { Guid } from "guid-typescript";
 
 import { ToastrService } from "ngx-toastr";
 

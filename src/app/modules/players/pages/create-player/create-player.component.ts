@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import {PlayerTypeDto} from "../../../../shared/models/player-type/player-type.dto";
 import {PlayerTypeService} from "../../../../shared/services/player-type.service";
 import {ToastrService} from "ngx-toastr";
@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PlayerCacheService} from "../../../../shared/services/player-cache.service";
 import Swal from "sweetalert2";
 import {PlayerDto} from "../../../../shared/models/player/player.dto";
+import {SquadService} from "../../../my-squads/services/squad.service";
 
 @Component({
   selector: 'app-create-player',
@@ -22,6 +23,7 @@ export class CreatePlayerComponent implements OnInit {
   validationMessages: any;
   player: CreatePlayerDto;
   squadId: string;
+  playerSelected: PlayerTypeDto;
 
   constructor(
     private notify: ToastrService,
@@ -30,15 +32,17 @@ export class CreatePlayerComponent implements OnInit {
     private playerService: PlayerService,
     private activeRouter: ActivatedRoute,
     private router: Router,
-    private playerCacheService: PlayerCacheService
-  ) { }
+    private playerCacheService: PlayerCacheService,
+    private squadService: SquadService,
+    private rendererService: Renderer2
+  ) {
+    this.initValidationMessages();
+  }
 
   ngOnInit(): void {
-    this.getAllPlayersTypes();
-    this.initForm();
-    this.initValidationMessages();
     this.squadId = this.activeRouter.getParam<string>('squadId');
-    this.getPlayerInCache();
+    this.initForm();
+    this.getAllPlayersTypes();
   }
 
   onSubmitForm(event: SubmitEvent): void {
@@ -63,14 +67,45 @@ export class CreatePlayerComponent implements OnInit {
       next: response => {
         this.playerCacheService.setPlayerInCache(response);
         this.notify.success('Jogador adicionado com sucesso!');
-        this.router.navigate(['/my-squads/squad/', response.squadId]);
+        this.confirmSharedSquad();
+      }
+    });
+  }
+
+  private confirmSharedSquad(): void {
+    Swal.fire({
+      title: 'Compartilhar',
+      text: 'Deseja compartilhar a lista com seu nome?',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#28a745',
+      cancelButtonColor: '#dc3545',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não'
+    }).then(result => {
+      if (result.isConfirmed) this.shareSquad();
+      else this.router.navigate(['/my-squads/squad/', this.squadId]);
+    });
+  }
+
+  private shareSquad(): void {
+    this.squadService.getSquadTextShared(this.squadId).subscribe({
+      next: response => {
+        const textShared = encodeURIComponent(response);
+        const url = `https://api.whatsapp.com/send?text=${textShared}`;
+        this.rendererService.setAttribute(window.open(url, '_blank'), 'noopener', 'true');
       }
     });
   }
 
   private getAllPlayersTypes(): void {
-    this.playerTypeService.getAll().subscribe({
-      next: (response: PlayerTypeDto[]) => this.playerTypes = response
+    this.playerTypeService.getAllBySquadId(this.squadId).subscribe({
+      next: (response: PlayerTypeDto[]) =>{
+        this.playerTypes = response;
+        this.playerSelected = response[0];
+        this.initForm();
+        this.getPlayerInCache();
+      }
     });
   }
 
@@ -132,7 +167,7 @@ export class CreatePlayerComponent implements OnInit {
       name: player.name,
       playerTypeId: player.playerTypeId,
       skillLevel: player.skillLevel,
-      squadId: player.squadId
+      squadId: this.squadId
     };
     this.createPlayer(createPlayer);
   }

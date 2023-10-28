@@ -3,7 +3,7 @@ import { SquadDto } from "../../../../shared/models/squad/squad.dto";
 import { ToastrService } from "ngx-toastr";
 import { SquadService } from "../../services/squad.service";
 import Swal from "sweetalert2";
-import {Router} from "@angular/router";
+import { AuthenticationService } from "../../../../shared/services/authentication.service";
 
 @Component({
   selector: 'app-list-squads',
@@ -15,15 +15,15 @@ export class ListSquadsComponent implements OnInit {
 
   constructor(
     private notify: ToastrService,
-    private mySquadService: SquadService
+    private mySquadService: SquadService,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
-    const userId= '6ef8a1e2-6572-4e80-be47-34fb991d37e6';
+    const userId = this.authenticationService.getUserLogged.userId;
 
     this.mySquadService.getAllByUserId(userId).subscribe({
       next: (response: SquadDto[]) => {
-        console.log(response[0].id)
         this.allSquadsUser = response;
       }
     });

@@ -10,19 +10,29 @@ import {Observable, tap} from 'rxjs';
 import {NgxSpinnerService} from "ngx-spinner";
 import {BaseResponse} from "../../shared/models/base-response.model";
 import {ToastrService} from "ngx-toastr";
+import {AuthenticationService} from "../../shared/services/authentication.service";
 
 @Injectable({ providedIn: 'root' })
 export class HttpRequestInterceptor implements HttpInterceptor {
 
   constructor(
     private loadingService: NgxSpinnerService,
-    private notifyService: ToastrService
+    private notifyService: ToastrService,
+    private authenticationService: AuthenticationService
   ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> | Observable<never> {
     this.loadingService.show();
 
-    return next.handle(request).pipe(
+    const token = this.authenticationService.getToken;
+
+    const requestClone = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return next.handle(requestClone).pipe(
       tap({
         next: () => null,
         error: (err: HttpErrorResponse) => {
@@ -36,7 +46,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   errorHandler(error: HttpErrorResponse): string {
     const responseError = error['error'] as BaseResponse<null>;
-    const messageError = responseError.errorMessages.join(", ");
+    const messageError = responseError ? responseError.errorMessages?.join(", ") : 'Houve um erro interno. Tente mais tarde!';
 
     switch (error.status) {
       case 401:

@@ -1,0 +1,87 @@
+.home-main {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  background-image: url("/assets/images/home_background2.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.home-image {
+  text-align: center;
+}
+
+.home-image > img {
+  width: 100%;
+}
+
+.home-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 2rem;
+  margin-top: 2rem;
+}
+
+.home-login > h1 {
+  font-weight: bold;
+  font-size: 1.7rem;
+  color: #ffffff;
+}
+
+.home-login-description {
+  color: #dddddd;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.home-login-button {
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+}
+
+@media screen and (min-width: 600px){
+  .home-main {
+    padding: 2rem;
+  }
+
+  .home-image {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 850px){
+  .home-main {
+    flex-direction: row;
+    padding: 4rem;
+    background-image: url("/assets/images/home_background.png");
+  }
+
+  .home-login {
+    width: 50%;
+  }
+
+  .home-login {
+    align-items: start;
+  }
+
+  .home-login-description {
+    text-align: start;
+  }
+
+  .home-login-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}

@@ -1,5 +1,5 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-import {NgxSpinnerService} from "ngx-spinner";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,16 @@ import {NgxSpinnerService} from "ngx-spinner";
 export class AppComponent implements OnInit {
   @HostBinding('class') className= 'darkMode';
 
-  constructor() {}
+  isHomePage = false;
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.className = 'darkMode';
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.isHomePage = this.router.url === '/home';
+      }
+    });
   }
 }
