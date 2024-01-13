@@ -1,4 +1,4 @@
 export interface CreateSquadForm {
-  name: string;
-  allowSkillLevel: boolean;
+    name: string;
+    allowSkillLevel: boolean;
 }
