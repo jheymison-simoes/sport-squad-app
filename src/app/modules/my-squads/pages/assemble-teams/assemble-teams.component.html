@@ -1,7 +1,6 @@
 <main class="container assemble-teams-main mt-2 pb-3">
   <section *ngIf="assembledTeams.length === 0">
-    <h1>Montar Times</h1>
-    <hr />
+    <app-default-header [title]="'Montar Times'" [showBackButton]="true"></app-default-header>
 
     <form
       [formGroup]="assembleTeamsForm"

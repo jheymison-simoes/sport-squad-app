@@ -12,6 +12,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { UpdatePlayerComponent } from './pages/update-player/update-player.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UpdatePlayerComponent } from './pages/update-player/update-player.compo
     MatOptionModule,
     MatSelectModule,
     MatButtonModule,
+    SharedModule,
   ],
 })
 export class PlayersModule {}

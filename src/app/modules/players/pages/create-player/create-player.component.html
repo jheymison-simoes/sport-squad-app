@@ -1,12 +1,11 @@
 <main class="container my-4 pb-4">
+  <app-default-header [title]="'Editar Jogador'" [showBackButton]="true"></app-default-header>
+
   <form
     [formGroup]="createPlayerForm"
     novalidate
     (submit)="onSubmitForm($event)"
   >
-    <h1 class="mt-4">Adicionar Jogador</h1>
-    <hr />
-
     <mat-form-field appearance="outline" class="inputs-full-width">
       <mat-label>Nome</mat-label>
       <input matInput required formControlName="name" />

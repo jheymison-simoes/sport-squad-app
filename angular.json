@@ -39,8 +39,7 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "src/assets/bootstrap/js/bootstrap.min.js",
-              "src/assets/fontawesome/js/all.min.js"
+              "src/assets/bootstrap/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -75,6 +74,14 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "schematics": {
+          "@schematics/angular:component": {
+            "skipTests": true
+          },
+          "@schematics/angular:service": {
+            "skipTests": true
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
