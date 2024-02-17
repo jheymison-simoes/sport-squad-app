@@ -20,20 +20,27 @@ import { StarRatingModule } from 'angular-star-rating';
 import { AssembleTeamsComponent } from './pages/assemble-teams/assemble-teams.component';
 
 @NgModule({
-    declarations: [MySquadsComponent, CreateSquadComponent, CreateSquadConfigComponent, SquadComponent, ListSquadsComponent, AssembleTeamsComponent],
-    imports: [
-        MatButtonModule,
-        CommonModule,
-        ReactiveFormsModule,
-        MySquadsRoutingModule,
-        MatCardModule,
-        MatTooltipModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSlideToggleModule,
-        MatSelectModule,
-        MatListModule,
-        StarRatingModule,
-    ],
+  declarations: [
+    MySquadsComponent,
+    CreateSquadComponent,
+    CreateSquadConfigComponent,
+    SquadComponent,
+    ListSquadsComponent,
+    AssembleTeamsComponent,
+  ],
+  imports: [
+    MatButtonModule,
+    CommonModule,
+    ReactiveFormsModule,
+    MySquadsRoutingModule,
+    MatCardModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatListModule,
+    StarRatingModule,
+  ],
 })
 export class MySquadsModule {}

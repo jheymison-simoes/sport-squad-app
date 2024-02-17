@@ -1,6 +1,6 @@
 export interface CreatePlayerDto {
-    name: string;
-    playerTypeId: string;
-    squadId: string;
-    skillLevel: number;
+  name: string;
+  playerTypeId: string;
+  squadId: string;
+  skillLevel: number;
 }

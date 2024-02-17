@@ -1,0 +1,26 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:html/recommended",
+        "plugin:prettier/recommended"
+      ]
+    }
+  ],
+  "rules": {
+    // Outras regras específicas do ESLint que você pode querer adicionar ou modificar
+  }
+}

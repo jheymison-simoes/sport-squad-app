@@ -1,16 +1,24 @@
 <main class="container my-4 pb-4">
-  <form [formGroup]="updatePlayerForm" novalidate (submit)="onSubmitForm($event)">
+  <form
+    [formGroup]="updatePlayerForm"
+    novalidate
+    (submit)="onSubmitForm($event)"
+  >
     <h1 class="mt-4">Atualizar Jogador</h1>
-    <hr>
+    <hr />
 
     <mat-form-field appearance="outline" class="inputs-full-width">
       <mat-label>Nome</mat-label>
-      <input matInput required formControlName="name">
-      <mat-error
-        *ngIf="updatePlayerForm.checkTouchedOrDirty('name')"
-      >
+      <input matInput required formControlName="name" />
+      <mat-error *ngIf="updatePlayerForm.checkTouchedOrDirty('name')">
         <span *ngIf="updatePlayerForm.containError('name', 'required')">
-          {{ updatePlayerForm.getMessageError(validationMessages, 'name', 'required') }}
+          {{
+            updatePlayerForm.getMessageError(
+              validationMessages,
+              'name',
+              'required'
+            )
+          }}
         </span>
       </mat-error>
     </mat-form-field>
@@ -26,11 +34,15 @@
           {{ playerType.name }}
         </mat-option>
       </mat-select>
-      <mat-error
-        *ngIf="updatePlayerForm.checkTouchedOrDirty('playerTypeId')"
-      >
+      <mat-error *ngIf="updatePlayerForm.checkTouchedOrDirty('playerTypeId')">
         <span *ngIf="updatePlayerForm.containError('playerTypeId', 'required')">
-          {{updatePlayerForm.getMessageError(validationMessages, 'playerTypeId', 'required')}}
+          {{
+            updatePlayerForm.getMessageError(
+              validationMessages,
+              'playerTypeId',
+              'required'
+            )
+          }}
         </span>
       </mat-error>
     </mat-form-field>
@@ -47,17 +59,12 @@
     </div>
 
     <div class="my-3 w-100">
-      <button
-        mat-raised-button
-        class="btn-save-new-player"
-        color="success"
-      >
+      <button mat-raised-button class="btn-save-new-player" color="success">
         <div class="flex-between">
           CONCLUIR
           <i class="fas fa-save"></i>
         </div>
       </button>
     </div>
-
   </form>
 </main>

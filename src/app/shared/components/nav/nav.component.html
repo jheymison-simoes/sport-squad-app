@@ -1,20 +1,32 @@
 <mat-toolbar class="sport-squad-nav">
   <section class="sport-squad-nav-logo">
-    <img class="logo" src="{{logoSrc}}" alt="logo">
+    <img class="logo" src="{{ logoSrc }}" alt="logo" />
     <span>Meu Raxa</span>
   </section>
 
   <section class="sport-squad-nav-user">
     <mat-card class="sport-squad-nav-card">
       <mat-card-header>
-        <div mat-card-avatar class="sport-squad-nav-card-image" [ngStyle]="{ 'background-image': 'url('+ userSession.imageUrl +')' }"></div>
+        <div
+          mat-card-avatar
+          class="sport-squad-nav-card-image"
+          [ngStyle]="{
+            'background-image': 'url(' + userSession.imageUrl + ')'
+          }"
+        ></div>
         <mat-card-title [matMenuTriggerFor]="menu">
-          <button mat-button [matMenuTriggerFor]="menu">{{ userSession.firstName }}</button>
+          <button mat-button [matMenuTriggerFor]="menu">
+            {{ userSession.firstName }}
+          </button>
         </mat-card-title>
       </mat-card-header>
     </mat-card>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item class="sport-squad-nav-user-sign-out" (click)="logout()">
+      <button
+        mat-menu-item
+        class="sport-squad-nav-user-sign-out"
+        (click)="logout()"
+      >
         <span>Sair</span>
         <i class="fas fa-sign-out-alt"></i>
       </button>

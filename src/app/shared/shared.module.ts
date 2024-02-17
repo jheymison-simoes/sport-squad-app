@@ -9,8 +9,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-    declarations: [NavComponent],
-    exports: [NavComponent],
-    imports: [CommonModule, MatToolbarModule, MatButtonModule, StarRatingModule.forRoot(), MatCardModule, MatMenuModule, MatIconModule],
+  declarations: [NavComponent],
+  exports: [NavComponent],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    StarRatingModule.forRoot(),
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+  ],
 })
 export class SharedModule {}

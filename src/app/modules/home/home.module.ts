@@ -5,7 +5,7 @@ import { SocialLoginModule } from '@abacritt/angularx-social-login';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-    declarations: [HomeComponent],
-    imports: [HomeRoutingModule, SocialLoginModule, MatButtonModule],
+  declarations: [HomeComponent],
+  imports: [HomeRoutingModule, SocialLoginModule, MatButtonModule],
 })
 export class HomeModule {}

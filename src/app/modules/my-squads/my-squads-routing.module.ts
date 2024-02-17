@@ -7,32 +7,32 @@ import { ListSquadsComponent } from './pages/list-squads/list-squads.component';
 import { AssembleTeamsComponent } from './pages/assemble-teams/assemble-teams.component';
 
 const routes: Routes = [
-    {
+  {
+    path: '',
+    component: MySquadsComponent,
+    children: [
+      {
         path: '',
-        component: MySquadsComponent,
-        children: [
-            {
-                path: '',
-                component: ListSquadsComponent,
-            },
-            {
-                path: 'create',
-                component: CreateSquadComponent,
-            },
-            {
-                path: 'squad/:squadId',
-                component: SquadComponent,
-            },
-        ],
-    },
-    {
-        path: 'squad/assemble-teams/:squadId',
-        component: AssembleTeamsComponent,
-    },
+        component: ListSquadsComponent,
+      },
+      {
+        path: 'create',
+        component: CreateSquadComponent,
+      },
+      {
+        path: 'squad/:squadId',
+        component: SquadComponent,
+      },
+    ],
+  },
+  {
+    path: 'squad/assemble-teams/:squadId',
+    component: AssembleTeamsComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class MySquadsRoutingModule {}
