@@ -1,0 +1,25 @@
+.default-header-container {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  position: relative;
+
+  i {
+    font-size: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    position: absolute;
+  }
+
+  i:hover {
+    background-color: #cccccc;
+    border-radius: 1rem;
+  }
+
+  h1 {
+    margin-bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+  }
+}

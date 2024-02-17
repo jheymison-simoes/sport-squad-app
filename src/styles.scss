@@ -35,6 +35,15 @@
 //  @include mat.all-component-colors($angular-dark-theme);
 //}
 
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('assets/fontawesome/webfonts/fa-regular-400.woff2') format('woff2'),
+  url('assets/fontawesome/webfonts/fa-regular-400.woff2') format('woff2');
+}
+
 html,
 body {
   height: 100%;

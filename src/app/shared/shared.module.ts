@@ -7,10 +7,11 @@ import { StarRatingModule } from 'angular-star-rating';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { DefaultHeaderComponent } from './components/default-header/default-header.component';
 
 @NgModule({
-  declarations: [NavComponent],
-  exports: [NavComponent],
+  declarations: [NavComponent, DefaultHeaderComponent],
+  exports: [NavComponent, DefaultHeaderComponent],
   imports: [
     CommonModule,
     MatToolbarModule,

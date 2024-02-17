@@ -18,6 +18,7 @@ import { SquadComponent } from './pages/squad/squad.component';
 import { ListSquadsComponent } from './pages/list-squads/list-squads.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { AssembleTeamsComponent } from './pages/assemble-teams/assemble-teams.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AssembleTeamsComponent } from './pages/assemble-teams/assemble-teams.co
     MatSelectModule,
     MatListModule,
     StarRatingModule,
+    SharedModule,
   ],
 })
 export class MySquadsModule {}

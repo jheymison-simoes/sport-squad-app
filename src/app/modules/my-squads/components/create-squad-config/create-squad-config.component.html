@@ -1,6 +1,5 @@
 <main class="pb-2">
-  <h1 class="mt-4">Configurações do Squad</h1>
-  <hr />
+  <app-default-header [title]="'Configurações do Squad'"></app-default-header>
 
   <form
     [formGroup]="createSquadConfigForm"
@@ -9,7 +8,7 @@
   >
     <mat-form-field appearance="outline" class="inputs-full-width">
       <mat-label>Tipo de jogador</mat-label>
-      <mat-select formControlName="playerTypeId" required>
+      <mat-select formControlName="playerTypeId">
         <mat-option>Selecione uma opção abaixo</mat-option>
         <mat-option
           *ngFor="let playerType of playerTypes"
