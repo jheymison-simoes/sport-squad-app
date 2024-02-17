@@ -1,3 +1,3 @@
 interface NgxSpinnerConfig {
-    type?: string;
+  type?: string;
 }

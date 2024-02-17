@@ -1,8 +1,12 @@
 <main class="pb-2">
   <h1 class="mt-4">Configurações do Squad</h1>
-  <hr>
+  <hr />
 
-  <form [formGroup]="createSquadConfigForm" novalidate (submit)="onSubmitForm($event)">
+  <form
+    [formGroup]="createSquadConfigForm"
+    novalidate
+    (submit)="onSubmitForm($event)"
+  >
     <mat-form-field appearance="outline" class="inputs-full-width">
       <mat-label>Tipo de jogador</mat-label>
       <mat-select formControlName="playerTypeId" required>
@@ -11,24 +15,40 @@
           *ngFor="let playerType of playerTypes"
           [value]="playerType.id"
         >
-          {{playerType.name}}
+          {{ playerType.name }}
         </mat-option>
       </mat-select>
       <mat-error
         *ngIf="createSquadConfigForm.checkTouchedOrDirty('playerTypeId')"
       >
-        <span *ngIf="createSquadConfigForm.containError('playerTypeId', 'required')">
-          {{createSquadConfigForm.getMessageError(validationMessages, 'playerTypeId', 'required')}}
+        <span
+          *ngIf="createSquadConfigForm.containError('playerTypeId', 'required')"
+        >
+          {{
+            createSquadConfigForm.getMessageError(
+              validationMessages,
+              'playerTypeId',
+              'required'
+            )
+          }}
         </span>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="inputs-full-width">
       <mat-label>Quantidade Máxima</mat-label>
-      <input type="number" matInput formControlName="quantity" required>
+      <input type="number" matInput formControlName="quantity" required />
       <mat-error *ngIf="createSquadConfigForm.checkTouchedOrDirty('quantity')">
-        <span *ngIf="createSquadConfigForm.containError('quantity', 'required')">
-          {{createSquadConfigForm.getMessageError(validationMessages, 'quantity', 'required')}}
+        <span
+          *ngIf="createSquadConfigForm.containError('quantity', 'required')"
+        >
+          {{
+            createSquadConfigForm.getMessageError(
+              validationMessages,
+              'quantity',
+              'required'
+            )
+          }}
         </span>
       </mat-error>
     </mat-form-field>
@@ -42,11 +62,7 @@
       Permitir suplentes?
     </mat-slide-toggle>
 
-    <button
-      mat-raised-button
-      class="btn-add-new-squad-config"
-      color="info"
-    >
+    <button mat-raised-button class="btn-add-new-squad-config" color="info">
       <div class="flex-between">
         ADICIONAR CONFIGURAÇÃO
         <i class="fas fa-plus"></i>
@@ -54,15 +70,29 @@
     </button>
   </form>
 
-  <hr>
+  <hr />
 
-  <section class="squad-config-card" *ngFor="let squadConfigCreated of squadConfigsCreated">
-    <i class="fas fa-{{squadConfigCreated.playerTypeIcon}} fa-2x p-4 text-success"></i>
+  <section
+    class="squad-config-card"
+    *ngFor="let squadConfigCreated of squadConfigsCreated"
+  >
+    <i
+      class="fas fa-{{
+        squadConfigCreated.playerTypeIcon
+      }} fa-2x p-4 text-success"
+    ></i>
     <div class="flex-between w-100">
       <div class="squad-config-card-body">
-        <span class="font-weight-bold">{{ squadConfigCreated.playerTypeName }}</span>
-        <span class="small text-muted">Quantidade: {{ squadConfigCreated.quantity }}</span>
-        <span class="small text-muted">Suplentes: {{ squadConfigCreated.allowsAlternate ? 'Sim' : 'Não' }}</span>
+        <span class="font-weight-bold">{{
+          squadConfigCreated.playerTypeName
+        }}</span>
+        <span class="small text-muted"
+          >Quantidade: {{ squadConfigCreated.quantity }}</span
+        >
+        <span class="small text-muted"
+          >Suplentes:
+          {{ squadConfigCreated.allowsAlternate ? 'Sim' : 'Não' }}</span
+        >
       </div>
       <button
         mat-fab
@@ -77,5 +107,4 @@
       </button>
     </div>
   </section>
-
 </main>

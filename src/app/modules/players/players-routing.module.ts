@@ -5,24 +5,24 @@ import { CreatePlayerComponent } from './pages/create-player/create-player.compo
 import { UpdatePlayerComponent } from './pages/update-player/update-player.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: PlayersComponent,
-        children: [
-            {
-                path: 'create/:squadId',
-                component: CreatePlayerComponent,
-            },
-            {
-                path: 'update/:playerId',
-                component: UpdatePlayerComponent,
-            },
-        ],
-    },
+  {
+    path: '',
+    component: PlayersComponent,
+    children: [
+      {
+        path: 'create/:squadId',
+        component: CreatePlayerComponent,
+      },
+      {
+        path: 'update/:playerId',
+        component: UpdatePlayerComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class PlayersRoutingModule {}

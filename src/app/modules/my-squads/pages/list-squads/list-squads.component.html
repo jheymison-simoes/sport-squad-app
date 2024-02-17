@@ -1,6 +1,6 @@
 <main class="container my-squads-main pb-4">
   <h1 class="mt-4">Meus Squads</h1>
-  <hr>
+  <hr />
 
   <section class="my-squads-items">
     <a
@@ -16,7 +16,10 @@
     </a>
 
     <section class="mt-2 w-100">
-      <div class="alert alert-info text-center w-100" *ngIf="allSquadsUser.length === 0">
+      <div
+        class="alert alert-info text-center w-100"
+        *ngIf="allSquadsUser.length === 0"
+      >
         Você não criou nenhum <strong>Squad</strong> ainda!
       </div>
       <mat-card class="mb-2" *ngFor="let squad of allSquadsUser">
@@ -63,6 +66,5 @@
         </mat-card-content>
       </mat-card>
     </section>
-
   </section>
 </main>

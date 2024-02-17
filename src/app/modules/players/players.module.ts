@@ -14,19 +14,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { UpdatePlayerComponent } from './pages/update-player/update-player.component';
 
 @NgModule({
-    declarations: [PlayersComponent, CreatePlayerComponent, UpdatePlayerComponent],
-    imports: [
-        CommonModule,
-        RouterOutlet,
-        PlayersRoutingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        StarRatingModule,
-        MatOptionModule,
-        MatSelectModule,
-        MatButtonModule,
-    ],
+  declarations: [
+    PlayersComponent,
+    CreatePlayerComponent,
+    UpdatePlayerComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    PlayersRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    StarRatingModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatButtonModule,
+  ],
 })
 export class PlayersModule {}

@@ -1,16 +1,24 @@
 <main class="container my-squads-main">
   <h1 class="mt-4">Novo Squad</h1>
-  <hr>
+  <hr />
 
-  <form [formGroup]="createSquadForm" novalidate (submit)="onSubmitForm($event)">
+  <form
+    [formGroup]="createSquadForm"
+    novalidate
+    (submit)="onSubmitForm($event)"
+  >
     <mat-form-field appearance="outline" class="inputs-full-width">
       <mat-label>Nome</mat-label>
-      <input matInput required formControlName="name">
-      <mat-error
-        *ngIf="createSquadForm.checkTouchedOrDirty('name')"
-      >
+      <input matInput required formControlName="name" />
+      <mat-error *ngIf="createSquadForm.checkTouchedOrDirty('name')">
         <span *ngIf="createSquadForm.containError('name', 'required')">
-          {{ createSquadForm.getMessageError(validationMessages, 'name', 'required') }}
+          {{
+            createSquadForm.getMessageError(
+              validationMessages,
+              'name',
+              'required'
+            )
+          }}
         </span>
       </mat-error>
     </mat-form-field>
@@ -24,22 +32,16 @@
       Usar nível de habilidade?
     </mat-slide-toggle>
 
-    <app-create-squad-config
-      [squadsConfig]="squadConfigsCreated">
+    <app-create-squad-config [squadsConfig]="squadConfigsCreated">
     </app-create-squad-config>
 
     <div class="my-3 w-100">
-      <button
-        mat-raised-button
-        class="btn-save-new-squad"
-        color="success"
-      >
+      <button mat-raised-button class="btn-save-new-squad" color="success">
         <div class="flex-between">
           CONCLUIR
           <i class="fas fa-save"></i>
         </div>
       </button>
     </div>
-
   </form>
 </main>
