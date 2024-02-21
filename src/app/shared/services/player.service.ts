@@ -59,4 +59,13 @@ export class PlayerService extends BaseService {
       .post<BaseResponse<boolean>>(uri, null)
       .pipe(map(this.validationResult));
   }
+
+  getAllNotGroupedBySquadId(squadId: string): Observable<Array<PlayerDto>> {
+    // const uri = `${}${squadId}`;
+    return this.httpClient
+      .get<
+        BaseResponse<Array<PlayerDto>>
+      >(this.baseUri, { params: { squadId } })
+      .pipe(map(this.validationResult));
+  }
 }

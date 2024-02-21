@@ -41,9 +41,14 @@
           color="primary"
           [labelPosition]="'before'"
           formControlName="balanced"
+          (change)="changeSkillLevel($event)"
         >
           Equilibrar por nível de habilidade?
         </mat-slide-toggle>
+      </section>
+
+      <section>
+        <app-change-skill-level-players></app-change-skill-level-players>
       </section>
 
       <div class="my-3 w-100">

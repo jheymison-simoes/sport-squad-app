@@ -19,6 +19,8 @@ import { ListSquadsComponent } from './pages/list-squads/list-squads.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { AssembleTeamsComponent } from './pages/assemble-teams/assemble-teams.component';
 import { SharedModule } from '../../shared/shared.module';
+import { ChangeSkillLevelPlayersComponent } from './components/change-skill-level-players/change-skill-level-players.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { SharedModule } from '../../shared/shared.module';
     SquadComponent,
     ListSquadsComponent,
     AssembleTeamsComponent,
+    ChangeSkillLevelPlayersComponent,
   ],
   imports: [
     MatButtonModule,
@@ -43,6 +46,7 @@ import { SharedModule } from '../../shared/shared.module';
     MatListModule,
     StarRatingModule,
     SharedModule,
+    MatExpansionModule,
   ],
 })
 export class MySquadsModule {}
