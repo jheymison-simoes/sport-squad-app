@@ -1,0 +1,41 @@
+<main class="change-skill-level-container">
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="showPlayers" >
+      <mat-card class="change-skill-level-card" *ngFor="let player of players; let i = index">
+        <mat-card-content class="change-skill-level-card-content">
+          <section class="change-skill-level-card-content-player">
+            <i [ngClass]="'fas fa-' + player.playerType.icon"></i>
+            <span>{{player.name}}</span>
+          </section>
+
+          <star-rating-control
+            class="change-skill-level-card-content-rating"
+            starType="svg"
+            size="large"
+            staticColor="ok"
+          >
+          </star-rating-control>
+        </mat-card-content>
+      </mat-card>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+
+<!--  <mat-card class="change-skill-level-card" *ngFor="let player of players; let i = index">-->
+<!--    <mat-card-content class="change-skill-level-card-content">-->
+<!--      <section class="change-skill-level-card-content-player">-->
+<!--        <i [ngClass]="'fas fa-' + player.playerType.icon"></i>-->
+<!--        <span>{{player.name}}</span>-->
+<!--      </section>-->
+
+<!--      <star-rating-control-->
+<!--        class="change-skill-level-card-content-rating"-->
+<!--        starType="svg"-->
+<!--        size="large"-->
+<!--        staticColor="ok"-->
+<!--      >-->
+<!--      </star-rating-control>-->
+<!--    </mat-card-content>-->
+<!--  </mat-card>-->
+</main>

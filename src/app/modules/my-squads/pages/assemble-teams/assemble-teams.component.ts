@@ -1,10 +1,13 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AssembleTeamsDto } from '../../models/assemble-teams.dto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SquadService } from '../../services/squad.service';
 import { ToastrService } from 'ngx-toastr';
 import { AssembledTeamsDto } from '../../models/assembled-teams.dto';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { PlayerService } from '../../../../shared/services/player.service';
+import { PlayerDto } from '../../../../shared/models/player/player.dto';
 
 @Component({
   selector: 'app-assemble-teams',
@@ -16,6 +19,8 @@ export class AssembleTeamsComponent implements OnInit {
   validationMessages: any;
   assembledTeams: Array<AssembledTeamsDto> = [];
   squadId: string;
+  showPlayersSquad = false;
+  players: Array<PlayerDto> = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,6 +28,8 @@ export class AssembleTeamsComponent implements OnInit {
     private squadService: SquadService,
     private notifyService: ToastrService,
     private rendererService: Renderer2,
+    private playerService: PlayerService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +74,18 @@ export class AssembleTeamsComponent implements OnInit {
           );
         },
       });
+  }
+
+  changeSkillLevel(event: MatSlideToggleChange): void {
+    this.router.navigate([], {
+      relativeTo: this.activeRouteService,
+      queryParams: { changeSkillLevel: event.checked },
+    });
+
+    // this.showPlayersSquad = event.checked;
+    // if (!this.showPlayersSquad) return;
+    //
+    // this.getPlayersBySquadById();
   }
 
   private initAssembleTeamsForm(): void {

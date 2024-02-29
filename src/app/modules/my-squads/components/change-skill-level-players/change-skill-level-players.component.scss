@@ -1,0 +1,52 @@
+.change-skill-level-container {
+  //margin: 1rem 0;
+
+  ::ng-deep {
+    .mat-expansion-panel {
+      box-shadow: none;
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0;
+    }
+  }
+}
+
+.change-skill-level-card {
+  margin: 1rem 0;
+}
+
+.change-skill-level-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.change-skill-level-card-content-player {
+  margin-bottom: 1rem;
+
+  i {
+    margin-right: 1rem;
+  }
+
+  span {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+}
+
+:host ::ng-deep .change-skill-level-card-content-rating .rating {
+  justify-content: start;
+}
+
+
+@media screen and (min-width: 390px) {
+  .change-skill-level-card-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .change-skill-level-card-content-player {
+    margin-bottom: 0;
+  }
+}
